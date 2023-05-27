@@ -66,7 +66,7 @@ while True:
         connectionSocket.close()
 
     except OSError:
-        # Kirim response untuk kesalahan yang terjadi selama penanganan file
+        # Kirim response untuk kesalahan yang terjadi selama penanganan file (internal)
         response = "HTTP/1.1 500 Internal Server Error\r\nContent-Type: text/html\r\n\r\n"
         error_message = "<html><head></head><body><h1>500 Internal Server Error</h1></body></html>\r\n"
         # Mengirim response HTTP yang sudah di-encode
