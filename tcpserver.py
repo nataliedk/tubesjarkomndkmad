@@ -55,20 +55,15 @@ while True:
             # Mengirim konten file yang diminta ke klien
             connectionSocket.sendall(outputdata)
         else:
-            # Mengirim response jika file tidak ada
-            response = "HTTP/1.1 404 Not Found\r\nContent-Type: text/html\r\n\r\n"
-            error_message = "<html><head></head><body><h1>404 Not Found</h1></body></html>\r\n"
-            # Mengirim response HTTP yang sudah di-encode
-            connectionSocket.send(response.encode())
-            connectionSocket.send(error_message.encode())
+            raise OSError # Menjalankan OSError karena file tidak ditemukan
 
         # Koneksi dengan klien ditutup
         connectionSocket.close()
 
     except OSError:
-        # Kirim response untuk kesalahan yang terjadi selama penanganan file (internal)
-        response = "HTTP/1.1 500 Internal Server Error\r\nContent-Type: text/html\r\n\r\n"
-        error_message = "<html><head></head><body><h1>500 Internal Server Error</h1></body></html>\r\n"
+        # Mengirim response jika file tidak ada atau terjadi error
+        response = "HTTP/1.1 404 Not Found\r\nContent-Type: text/html\r\n\r\n"
+        error_message = "<html><head></head><body><h1>404 Not Found</h1></body></html>\r\n"
         # Mengirim response HTTP yang sudah di-encode
         connectionSocket.send(response.encode())
         connectionSocket.send(error_message.encode())
