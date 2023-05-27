@@ -8,7 +8,8 @@ serverSocket = socket(AF_INET, SOCK_STREAM)
 
 # Menyiapkan server socket
 serverPort = 80  # Memasukkan server port
-serverSocket.bind(('', serverPort)) # Mengikat (bind) soket ke alamat dan nomor port
+IPaddress = '192.168.1.9' # Memasukkan alamat IP host masing masing
+serverSocket.bind((IPaddress, serverPort)) # Mengikat (bind) soket ke alamat dan nomor port
 serverSocket.listen(1) # Mendengarkan koneksi dengan menggunakan metode listen
 
 while True:
